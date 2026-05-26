@@ -1,28 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>AI CRM Generator</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI CRM Builder</title>
+
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-    <div class="container">
+    <!-- Navbar -->
 
-        <h1>AI CRM Generator</h1>
+    <nav class="navbar">
 
-        <textarea id="prompt"
-            placeholder="Describe your CRM system..."></textarea>
+        <div class="logo">
+            <div class="logo-circle"></div>
+            CRM AI
+        </div>
 
-        <button onclick="generateCRM()">
-            Generate CRM
+        <div class="nav-links">
+            <a href="#">Product</a>
+            <a href="#">Use Cases</a>
+            <a href="#">Resources</a>
+            <a href="#">Pricing</a>
+        </div>
+
+        <button class="nav-btn">
+            Start Building
         </button>
+
+    </nav>
+
+    <!-- Hero Section -->
+
+    <section class="hero">
+
+        <div class="tabs">
+            <button class="active-tab">Apps</button>
+            <button>Superagents</button>
+        </div>
+
+        <h1>
+            Turn your ideas into apps
+        </h1>
+
+        <p>
+            Build CRM systems using AI-generated schemas,
+            APIs, authentication, dashboards and workflows.
+        </p>
+
+        <!-- AI Prompt Box -->
+
+        <div class="prompt-box">
+
+            <textarea id="prompt"
+                placeholder="Build a CRM with login, contacts, dashboard, role-based access, and premium plans..."></textarea>
+
+            <div class="bottom-bar">
+
+                <span class="plan">Plan</span>
+
+                <button onclick="generateCRM()" class="generate-btn">
+                    ↑
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Output -->
 
         <div id="output"></div>
 
-    </div>
+    </section>
 
     <script src="script.js"></script>
 
 </body>
+
 </html>

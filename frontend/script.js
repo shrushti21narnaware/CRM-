@@ -1,10 +1,12 @@
 async function generateCRM() {
 
-    const prompt = document.getElementById("prompt").value;
+    const prompt =
+        document.getElementById("prompt").value;
 
-    const output = document.getElementById("output");
+    const output =
+        document.getElementById("output");
 
-    output.innerHTML = "Generating...";
+    output.innerHTML = "Generating CRM architecture...";
 
     try {
 
@@ -12,10 +14,14 @@ async function generateCRM() {
             "https://crm-compiler.onrender.com/compile",
             {
                 method: "POST",
+
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ prompt })
+
+                body: JSON.stringify({
+                    prompt
+                })
             }
         );
 
@@ -26,6 +32,7 @@ async function generateCRM() {
 
     } catch (error) {
 
-        output.innerHTML = error.message;
+        output.innerHTML =
+            "Error: " + error.message;
     }
 }
