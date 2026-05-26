@@ -4,7 +4,7 @@
   "description": "Deterministic multi-stage app config generator with validation and repair",
   "main": "src/server.js",
   "scripts": {
-  "start": "node server.js"
+    "start": "node server.js",
     "eval": "node scripts/evaluate.js",
     "smoke": "node scripts/smoke.js"
   },
