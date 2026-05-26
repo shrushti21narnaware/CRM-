@@ -11,10 +11,7 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-
-    res.send("AI App Config Compiler Running");
-});
+app.use(express.static("public"));
 
 app.post("/compile", async (req, res) => {
 
