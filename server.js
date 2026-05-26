@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
-const runPipeline =
-require("./src/pipeline/orchestrator");
+const { generateConfig } = require("./src/pipeline");
 
 const app = express();
 
@@ -11,7 +11,7 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "frontend")));
 
 app.post("/compile", async (req, res) => {
 
@@ -28,7 +28,7 @@ app.post("/compile", async (req, res) => {
         }
 
         const result =
-            await runPipeline(prompt);
+            await generateConfig(prompt);
 
         res.json(result);
 

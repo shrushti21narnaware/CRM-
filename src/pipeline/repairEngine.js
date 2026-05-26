@@ -1,14 +1,30 @@
-function repairConfig(config, errors) {
+const { validateAndRepair } = require("../repair/validator");
 
-    errors.forEach(error => {
+function repairConfig(config) {
+  const shaped = {
+    meta: {
+      version: "1.0.0",
+      pipeline: ["legacy_repair"],
+      deterministic: true,
+      timestamp: new Date().toISOString()
+    },
+    assumptions: [],
+    intent: {
+      productType: "legacy",
+      features: [],
+      roles: [],
+      constraints: [],
+      unknowns: []
+    },
+    design: { entities: [], flows: [], roleMatrix: [] },
+    schemas: config,
+    refinement: { changes: [], warnings: [] },
+    validation: { valid: false, repairs: [], errors: [] },
+    execution: { executable: false, checks: [] }
+  };
 
-        if (error === "Contacts table missing") {
-
-            config.db_schema.tables.push("contacts");
-        }
-    });
-
-    return config;
+  const result = validateAndRepair(shaped);
+  return result.config.schemas;
 }
 
 module.exports = repairConfig;

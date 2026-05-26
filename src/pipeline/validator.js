@@ -1,25 +1,33 @@
+const { validateAndRepair } = require("../repair/validator");
+
 function validateSchemas(config) {
+  const shaped = {
+    meta: {
+      version: "1.0.0",
+      pipeline: ["legacy_orchestrator"],
+      deterministic: true,
+      timestamp: new Date().toISOString()
+    },
+    assumptions: [],
+    intent: {
+      productType: "legacy",
+      features: [],
+      roles: [],
+      constraints: [],
+      unknowns: []
+    },
+    design: { entities: [], flows: [], roleMatrix: [] },
+    schemas: config,
+    refinement: { changes: [], warnings: [] },
+    validation: { valid: false, repairs: [], errors: [] },
+    execution: { executable: false, checks: [] }
+  };
 
-    const errors = [];
-
-    if (!config.ui_schema) {
-        errors.push("Missing UI schema");
-    }
-
-    if (!config.api_schema) {
-        errors.push("Missing API schema");
-    }
-
-    if (!config.db_schema.tables.includes("contacts")) {
-        errors.push("Contacts table missing");
-    }
-
-    return {
-
-        valid: errors.length === 0,
-
-        errors
-    };
+  const result = validateAndRepair(shaped);
+  return {
+    valid: result.valid,
+    errors: result.errors
+  };
 }
 
 module.exports = validateSchemas;

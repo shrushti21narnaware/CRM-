@@ -10,20 +10,19 @@ async function generateCRM() {
 
     try {
 
-        const response = await fetch(
-            "https://crm-compiler.onrender.com/compile",
-            {
-                method: "POST",
+        const response = await fetch("/compile", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                prompt
+            })
+        });
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    prompt
-                })
-            }
-        );
+        if (!response.ok) {
+            throw new Error("Request failed with status " + response.status);
+        }
 
         const data = await response.json();
 

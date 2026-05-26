@@ -2,11 +2,12 @@
   "name": "app-config-compiler",
   "version": "1.0.0",
   "description": "Deterministic multi-stage app config generator with validation and repair",
-  "main": "src/server.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "eval": "node scripts/evaluate.js",
-    "smoke": "node scripts/smoke.js"
+    "smoke": "node scripts/smoke.js",
+    "test": "npm run smoke"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
