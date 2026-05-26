@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI CRM Builder</title>
-
     <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-
-    <!-- Navbar -->
+    <div class="bg-orb orb-1" aria-hidden="true"></div>
+    <div class="bg-orb orb-2" aria-hidden="true"></div>
 
     <nav class="navbar">
-
         <div class="logo">
             <div class="logo-circle"></div>
             CRM AI
@@ -27,57 +23,53 @@
             <a href="#">Pricing</a>
         </div>
 
-        <button class="nav-btn">
-            Start Building
-        </button>
-
+        <button class="nav-btn">Start Building</button>
     </nav>
 
-    <!-- Hero Section -->
-
-    <section class="hero">
-
-        <div class="tabs">
-            <button class="active-tab">Apps</button>
-            <button>Superagents</button>
+    <main class="hero">
+        <div class="tabs" role="tablist" aria-label="Builder modes">
+            <button class="tab active-tab" role="tab" aria-selected="true" data-mode="apps">Apps</button>
+            <button class="tab" role="tab" aria-selected="false" data-mode="agents">Superagents</button>
         </div>
 
-        <h1>
-            Turn your ideas into apps
-        </h1>
-
-        <p>
-            Build CRM systems using AI-generated schemas,
-            APIs, authentication, dashboards and workflows.
-        </p>
-
-        <!-- AI Prompt Box -->
+        <h1 id="heroTitle">Turn your ideas into apps</h1>
+        <p id="heroSubtitle">Build CRM systems using AI-generated schemas, APIs, authentication, dashboards and workflows.</p>
 
         <div class="prompt-box">
-
-            <textarea id="prompt"
-                placeholder="Build a CRM with login, contacts, dashboard, role-based access, and premium plans..."></textarea>
-
-            <div class="bottom-bar">
-
-                <span class="plan">Plan</span>
-
-                <button onclick="generateCRM()" class="generate-btn">
-                    ↑
-                </button>
-
+            <div class="prompt-header">
+                <span class="plan" id="currentModeLabel">Apps Mode</span>
+                <span class="hint">Press Ctrl + Enter to generate</span>
             </div>
 
+            <div class="quick-prompts" id="quickPrompts">
+                <button type="button" class="chip">Sales CRM with lead stages</button>
+                <button type="button" class="chip">Support CRM with ticket SLAs</button>
+                <button type="button" class="chip">Freemium CRM with billing plans</button>
+            </div>
+
+            <textarea id="prompt" placeholder="Build a CRM with login, contacts, dashboard, role-based access, and premium plans..."></textarea>
+
+            <div class="bottom-bar">
+                <div class="status" id="statusText">Ready</div>
+                <div class="actions">
+                    <button id="clearBtn" class="ghost-btn" type="button">Clear</button>
+                    <button id="generateBtn" class="generate-btn" type="button">Generate</button>
+                </div>
+            </div>
         </div>
 
-        <!-- Output -->
-
-        <div id="output"></div>
-
-    </section>
+        <section id="outputPanel" class="output-panel hidden" aria-live="polite">
+            <div class="output-toolbar">
+                <strong>Generated Architecture</strong>
+                <div class="actions">
+                    <button id="copyBtn" class="ghost-btn" type="button">Copy</button>
+                    <button id="downloadBtn" class="ghost-btn" type="button">Download JSON</button>
+                </div>
+            </div>
+            <pre id="output"></pre>
+        </section>
+    </main>
 
     <script src="script.js"></script>
-
 </body>
-
 </html>
